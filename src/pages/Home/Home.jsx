@@ -41,7 +41,7 @@ function Home() {
   );
   const [showNewChat, setShowNewChat] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const socket = socketIOClient("http://localhost:3001", {
+  const socket = socketIOClient("https://chatapp-backend-taupe.vercel.app", {
     auth: {
       key: user._id,
     },
