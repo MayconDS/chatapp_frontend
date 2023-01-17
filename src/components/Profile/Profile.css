@@ -1,0 +1,326 @@
+.profile {
+  width: 35%;
+  max-width: 415px;
+  position: fixed;
+  padding: 60px 30px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #f8faff;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile > .profile--head {
+  display: flex;
+
+  align-items: center;
+}
+.profile > .profile--head > .profile--backbutton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.profile > .profile--head > .profile--backbutton svg {
+  color: black;
+}
+.profile > .profile--head > .profile--headtitle {
+  font-size: 19px;
+  color: rgb(0, 0, 0);
+  line-height: 40px;
+  flex: 1;
+  font-weight: bold;
+}
+
+.profile > .profile--avatar {
+  position: relative;
+  align-items: center;
+  height: 170px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.profile > .profile--avatar > input[type="file"] {
+  display: none;
+}
+.profile > .profile--avatar > label > .profile--avatar--display {
+  background-color: rgb(235, 235, 235);
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: absolute;
+
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  flex-direction: column;
+}
+
+.profile > .profile--avatar img {
+  width: 150px;
+  height: 150px;
+
+  border-radius: 50%;
+}
+.profile > .profile--avatar > .profile--avatar--buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.profile > .profile--avatar > .profile--avatar--buttons > svg {
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.profile > .profile--name {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  position: relative;
+  border: 1px solid rgba(145, 158, 171, 0.32);
+  border-radius: 8px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.profile > .profile--name > .profile--name--label {
+  position: absolute;
+  top: -12px;
+  background-color: #f8faff;
+  padding: 0 5px;
+}
+.profile > .profile--name > .profile--name--label span {
+  color: #919eab;
+  font-weight: 400;
+}
+.profile > .profile--name > .profile--name--title {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile > .profile--name > .profile--name--title > input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: rgb(6, 6, 6);
+  outline: 0;
+  font-size: 17px;
+}
+.profile > .profile--name > .profile--name--title > input::placeholder {
+  color: rgb(2, 2, 2);
+}
+.profile > .profile--name > .profile--name--title > div > svg {
+  color: rgb(186, 186, 186);
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.profile > .profile--note {
+  padding: 0 20px;
+}
+
+.profile > .profile--note p {
+  color: rgb(114, 114, 114);
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.profile > .profile--bio {
+  padding: 10px 20px;
+  position: relative;
+  border: 1px solid rgba(145, 158, 171, 0.32);
+  border-radius: 8px;
+
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.profile > .profile--bio > .profile--bio--label {
+  position: absolute;
+  top: -12px;
+  background-color: #f8faff;
+  padding: 0 5px;
+}
+.profile > .profile--bio > .profile--bio--label span {
+  color: #919eab;
+  font-weight: 400;
+}
+.profile > .profile--bio > .profile--bio--title {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile > .profile--bio > .profile--bio--title > input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: rgb(0, 0, 0);
+  outline: 0;
+  font-size: 17px;
+  padding: 5px 0px;
+}
+.profile > .profile--bio > .profile--bio--title > input::placeholder {
+  color: rgb(1, 1, 1);
+}
+.profile > .profile--bio > .profile--bio--title > div > svg {
+  color: rgb(186, 186, 186);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.profile > .profile--delete {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile > .profile--delete > .profile--title > h1 {
+  color: #919eab;
+  font-weight: 500;
+  font-size: 20px;
+}
+.profile > .profile--delete > .profile--caution > p {
+  color: gray;
+  font-size: 12px;
+  width: 90%;
+}
+.profile > .profile--delete > button {
+  width: 50%;
+  background: transparent;
+  border: 1px solid rgb(219, 48, 48);
+  color: rgb(219, 48, 48);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px 6px;
+  font-weight: 500;
+  transition: all ease 0.3s;
+}
+.profile > .profile--delete > button:hover {
+  background-color: rgb(219, 48, 48);
+  color: white;
+}
+
+/* DARK */
+
+.profile.dark {
+  width: 35%;
+  max-width: 415px;
+  position: fixed;
+  padding: 60px 30px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #36393e;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile.dark > .profile--head > .profile--backbutton svg {
+  color: rgb(255, 255, 255);
+}
+.profile.dark > .profile--head > .profile--headtitle {
+  font-size: 19px;
+  color: rgb(255, 255, 255);
+  line-height: 40px;
+  flex: 1;
+  font-weight: bold;
+}
+
+.profile.dark > .profile--name {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 8px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.profile.dark > .profile--name > .profile--name--label {
+  position: absolute;
+  top: -12px;
+  background-color: #36393e;
+  padding: 0 5px;
+}
+.profile.dark > .profile--name > .profile--name--label span {
+  color: #dbdbdb;
+  font-weight: 400;
+}
+
+.profile.dark > .profile--name > .profile--name--title > input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: rgb(255, 255, 255);
+  outline: 0;
+  font-size: 17px;
+}
+.profile.dark > .profile--name > .profile--name--title > input::placeholder {
+  color: rgb(2, 2, 2);
+}
+.profile.dark > .profile--name > .profile--name--title > div > svg {
+  color: rgb(186, 186, 186);
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.profile.dark > .profile--note p {
+  color: rgb(165, 165, 165);
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.profile.dark > .profile--bio {
+  padding: 10px 20px;
+  position: relative;
+  border: 1px solid rgba(145, 158, 171, 0.32);
+  border-radius: 8px;
+
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.profile.dark > .profile--bio > .profile--bio--label {
+  position: absolute;
+  top: -12px;
+  background-color: #36393e;
+  padding: 0 5px;
+}
+.profile.dark > .profile--bio > .profile--bio--label span {
+  color: #dbdbdb;
+  font-weight: 400;
+}
+
+.profile.dark > .profile--bio > .profile--bio--title > input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: rgb(255, 255, 255);
+  outline: 0;
+  font-size: 17px;
+  padding: 5px 0px;
+}
+.profile.dark > .profile--bio > .profile--bio--title > input::placeholder {
+  color: rgb(255, 255, 255);
+}
+.profile.dark > .profile--bio > .profile--bio--title > div > svg {
+  color: rgb(186, 186, 186);
+  font-size: 20px;
+  cursor: pointer;
+}

@@ -1,0 +1,197 @@
+.chatListItem {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  height: 80px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 20px;
+}
+
+.chatListItem.active {
+  background-color: #5b96f7;
+  box-shadow: #a6c4f5 0px 4px 12px;
+}
+
+.chatListItem.active
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--name {
+  color: white;
+}
+
+.chatListItem.active
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListITem--lastMsg {
+  color: rgb(234, 234, 234);
+}
+
+.chatListItem.active
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--box
+  > .chatListItem--date {
+  color: rgb(245, 245, 245);
+}
+
+.chatListItem > #chatListItem--avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-left: 15px;
+}
+
+.chatListItem > .chatListItem--lines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 15px;
+  margin-left: 15px;
+  height: 100%;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.chatListItem > .chatListItem--lines > .chatListItem--line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+}
+.chatListItem
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--box {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatListItem
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--name {
+  font-size: 17px;
+  color: rgb(6, 6, 6);
+  font-weight: 700;
+}
+.chatListItem
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--box
+  > .chatListItem--date {
+  font-size: 12px;
+  color: rgb(171, 171, 171);
+}
+
+.chatListItem
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--box
+  > .chatListItem--status {
+  font-size: 12px;
+  color: rgb(1, 255, 111);
+}
+
+.chatListItem
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListITem--lastMsg {
+  font-size: 14px;
+  color: rgb(108, 108, 108);
+  display: flex;
+  width: 100%;
+}
+
+.chatListItem
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListITem--lastMsg
+  > p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* DARK */
+
+.chatListItem.dark {
+  background-color: #45484c;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.chatListItem.dark.active {
+  background-color: #5b96f7;
+  box-shadow: 0px 0px 0px 0px;
+}
+
+.chatListItem.dark.active
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--name {
+  color: white;
+}
+
+.chatListItem.dark.active
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListITem--lastMsg {
+  color: rgb(234, 234, 234);
+}
+
+.chatListItem.dark.active
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--box
+  > .chatListItem--date {
+  color: rgb(245, 245, 245);
+}
+
+.chatListItem.dark > .chatListItem--lines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-right: 15px;
+  margin-left: 15px;
+  height: 100%;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.chatListItem.dark
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--name {
+  font-size: 17px;
+  color: rgb(255, 255, 255);
+}
+.chatListItem.dark
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--box
+  > .chatListItem--date {
+  font-size: 12px;
+  color: #999;
+}
+
+.chatListItem.dark
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListItem--box
+  > .chatListItem--status {
+  font-size: 12px;
+  color: rgb(1, 255, 111);
+}
+
+.chatListItem.dark
+  > .chatListItem--lines
+  > .chatListItem--line
+  > .chatListITem--lastMsg {
+  font-size: 14px;
+  color: rgb(204, 204, 204);
+  display: flex;
+  width: 100%;
+}

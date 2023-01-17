@@ -1,0 +1,273 @@
+.body {
+  display: flex;
+  height: 100%;
+}
+.chatWindow {
+  display: flex;
+  flex-direction: Column;
+  height: 100%;
+  flex: 1;
+  transition: all ease 0.5s;
+}
+
+.chatWindow > .chatWindow--header {
+  background-color: #f8faff;
+  border-left: 1px solid #e0e0e0;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chatWindow > .chatWindow--header > .chatWindow--headerinfo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.chatWindow > .chatWindow--header > .chatWindow--headerinfo > button > svg {
+  color: #4b4b4b;
+}
+
+.chatWindow
+  > .chatWindow--header
+  > .chatWindow--headerinfo
+  > .chatWindow--avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.chatWindow
+  > .chatWindow--header
+  > .chatWindow--headerinfo
+  > .chatWindow--name {
+  font-size: 17px;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+}
+
+.chatWindow > .chatWindow--header > .chatWindow--headerbuttons {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+.chatWindow
+  > .chatWindow--header
+  > .chatWindow--headerbuttons
+  > .chatWindow--btn {
+  color: #4b4b4b;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* body */
+
+.chatWindow--body {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f0f4fa;
+
+  padding: 20px 60px;
+}
+.chatWindow--body::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.chatWindow--body::-webkit-scrollbar-thumb {
+  background-color: rgba(46, 46, 46, 0.2);
+}
+
+/* footer */
+.chatWindow--footer {
+  height: 62px;
+  background-color: #f7f9fd;
+  display: flex;
+  align-items: center;
+}
+
+.chatWindow--footer > .chatWindow--pre {
+  display: flex;
+  gap: 10px;
+  margin: 0 15px;
+}
+.chatWindow--footer > .chatWindow--pre > .chatWindow--btn {
+  color: #5b96f7;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all ease 0.3s;
+}
+.chatWindow--footer > .chatWindow--inputarea {
+  flex: 1;
+}
+.chatWindow--footer > .chatWindow--inputarea > input {
+  width: 100%;
+
+  height: 40px;
+
+  border: none;
+  outline: 0;
+  background-color: #eaf2fe;
+  border-radius: 20px;
+  font-size: 15px;
+  color: #4a4a4a;
+  padding-left: 15px;
+}
+.chatWindow--footer > .chatWindow--pos {
+  display: flex;
+  margin: 0 15px;
+}
+
+.chatWindow--footer > .chatWindow--pos > .chatWindow--btn {
+  color: #5b96f7;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all ease 0.3s;
+}
+
+/* DARK */
+
+.chatWindow.dark > .chatWindow--header {
+  background-color: #36393e;
+  border-left: 1px solid rgb(97, 97, 97);
+  height: 60px;
+  border-bottom: 1px solid rgb(97, 97, 97);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chatWindow.dark > .chatWindow--header > .chatWindow--headerinfo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chatWindow.dark
+  > .chatWindow--header
+  > .chatWindow--headerinfo
+  > button
+  > svg {
+  color: #ffffff;
+}
+
+.chatWindow.dark
+  > .chatWindow--header
+  > .chatWindow--headerinfo
+  > .chatWindow--avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.chatWindow.dark
+  > .chatWindow--header
+  > .chatWindow--headerinfo
+  > .chatWindow--name {
+  font-size: 17px;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+}
+
+.chatWindow.dark > .chatWindow--header > .chatWindow--headerbuttons {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+.chatWindow.dark
+  > .chatWindow--header
+  > .chatWindow--headerbuttons
+  > .chatWindow--btn {
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* body */
+
+.chatWindow.dark > .chatWindow--body {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #1e2124;
+
+  padding: 20px 60px;
+}
+.chatWindow.dark > .chatWindow--body::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.chatWindow.dark > .chatWindow--body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* footer */
+.chatWindow.dark > .chatWindow--footer {
+  height: 62px;
+  background-color: #36393e;
+  display: flex;
+  align-items: center;
+}
+
+.chatWindow.dark > .chatWindow--footer > .chatWindow--pre {
+  display: flex;
+  gap: 10px;
+  margin: 0 15px;
+}
+.chatWindow.dark > .chatWindow--footer > .chatWindow--pre > .chatWindow--btn {
+  color: #7289da;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all ease 0.3s;
+}
+.chatWindow.dark > .chatWindow--footer > .chatWindow--inputarea {
+  flex: 1;
+}
+.chatWindow.dark > .chatWindow--footer > .chatWindow--inputarea > input {
+  width: 100%;
+
+  height: 40px;
+
+  border: none;
+  outline: 0;
+  background-color: #fff;
+  border-radius: 20px;
+  font-size: 15px;
+  color: #4a4a4a;
+  padding-left: 15px;
+}
+.chatWindow.dark > .chatWindow--footer > .chatWindow--pos {
+  display: flex;
+  margin: 0 15px;
+}
+
+.chatWindow.dark > .chatWindow--footer > .chatWindow--pos > .chatWindow--btn {
+  color: #7289da;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all ease 0.3s;
+}
+
+.chatWindow--emojiarea {
+  height: 420px;
+  overflow-y: hidden;
+  transition: all ease 0.3s;
+}
+
+aside.EmojiPickerReact {
+  width: auto !important;
+}
+
+@media (max-width: 800px) {
+  .chatWindow--body {
+    padding: 20px 20px;
+  }
+}

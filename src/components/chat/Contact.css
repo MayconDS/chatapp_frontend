@@ -1,0 +1,154 @@
+.contact {
+  background-color: #f8faff;
+  height: 100%;
+  margin-right: -300px;
+  max-width: 300px;
+
+  flex: 1;
+  border-left: 1px solid rgb(230, 230, 230);
+  transition: all ease 0.5s;
+}
+.contact > .contact--head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid rgb(230, 230, 230);
+}
+.contact > .contact--head > .contact--exit {
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 60px;
+
+  width: 100%;
+}
+
+.contact > .contact--head > .contact--exit > h1 {
+  font-size: 15px;
+}
+.contact > .contact--head > .contact--exit > svg {
+  cursor: pointer;
+}
+.contact > .contact--container {
+  padding: 20px 20px;
+}
+
+.contact > .contact--container > .contact--info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  padding-bottom: 34px;
+}
+.contact > .contact--container > .contact--info > img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.contact
+  > .contact--container
+  > .contact--info
+  > .contact--details
+  > .contact--name {
+  color: #424242;
+  font-weight: 700;
+}
+
+.contact
+  > .contact--container
+  > .contact--info
+  > .contact--details
+  > .contact--user {
+  color: #777777;
+  font-weight: 600;
+}
+
+.contact > .contact--container > .contact--about {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  padding-bottom: 25px;
+}
+.contact > .contact--container > .contact--about > h1 {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+}
+.contact > .contact--container > .contact--about > p {
+  font-weight: bold;
+}
+
+/* DARK */
+
+.contact.dark {
+  background-color: #36393e;
+  height: 100%;
+  margin-right: -300px;
+  max-width: 300px;
+
+  flex: 1;
+  border-left: 1px solid rgb(89, 89, 89);
+  transition: all ease 0.5s;
+}
+.contact.dark > .contact--head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid rgb(89, 89, 89);
+}
+
+.contact.dark > .contact--head > .contact--exit > h1 {
+  color: white;
+}
+.contact.dark > .contact--head > .contact--exit > svg {
+  color: white;
+}
+
+.contact.dark > .contact--container > .contact--info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  border-bottom: 1px solid rgb(89, 89, 89);
+  padding-bottom: 34px;
+}
+
+.contact.dark
+  > .contact--container
+  > .contact--info
+  > .contact--details
+  > .contact--name {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.contact.dark
+  > .contact--container
+  > .contact--info
+  > .contact--details
+  > .contact--user {
+  color: #d2d2d2;
+  font-weight: 600;
+}
+
+.contact.dark > .contact--container > .contact--about {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-bottom: 1px solid rgb(89, 89, 89);
+  padding-bottom: 25px;
+}
+.contact.dark > .contact--container > .contact--about > h1 {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+}
+.contact.dark > .contact--container > .contact--about > p {
+  color: white;
+}
