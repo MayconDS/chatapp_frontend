@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const Api = axios.create({
-  baseURL: 'https://chatapp-backend-taupe.vercel.app',
+  baseURL: 'https://chatapp-50bm.onrender.com',
 })
 
 export default Api
