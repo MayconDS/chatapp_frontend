@@ -41,7 +41,7 @@ function Home() {
   );
   const [showNewChat, setShowNewChat] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const socket = socketIOClient("https://chatapp-backend-0c25.onrender.com", {
+  const socket = socketIOClient("https://chatapp-op54.onrender.com", {
     auth: {
       key: user._id,
     },
