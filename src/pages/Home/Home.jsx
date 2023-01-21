@@ -45,6 +45,8 @@ function Home() {
     auth: {
       key: user._id,
     },
+    withCredentials: true,
+    autoConnect: true,
   });
 
   const Resize = (e) => {
