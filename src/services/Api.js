@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const Api = axios.create({
-  baseURL: 'https://chatapp-j3pi.onrender.com',
+  baseURL: 'https://chatapp-zmlc.onrender.com',
 })
 
 export default Api

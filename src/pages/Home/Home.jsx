@@ -41,7 +41,7 @@ function Home() {
   );
   const [showNewChat, setShowNewChat] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const socket = socketIOClient("https://chatapp-j3pi.onrender.com", {
+  const socket = socketIOClient("https://chatapp-zmlc.onrender.com", {
     auth: {
       key: user._id,
     },
