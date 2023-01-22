@@ -41,13 +41,16 @@ function Home() {
   );
   const [showNewChat, setShowNewChat] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const socket = socketIOClient("https://chatapp-backend-992c.onrender.com", {
-    auth: {
-      key: user._id,
-    },
+  const socket = socketIOClient(
+    "https://chatappbackend-production-45fa.up.railway.app",
+    {
+      auth: {
+        key: user._id,
+      },
 
-    autoConnect: true,
-  });
+      autoConnect: true,
+    }
+  );
 
   const Resize = (e) => {
     if (e.currentTarget.innerWidth > 600) {

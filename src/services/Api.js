@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const Api = axios.create({
-  baseURL: 'https://chatapp-backend-992c.onrender.com',
+  baseURL: 'https://chatappbackend-production-45fa.up.railway.app/',
 })
 
 export default Api
