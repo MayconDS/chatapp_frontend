@@ -47,6 +47,13 @@ function Home() {
       auth: {
         key: user._id,
       },
+      reconnectionDelay: 1000,
+      reconnection: true,
+      reconnectionAttemps: 10,
+      transports: ["websocket"],
+      agent: false,
+      upgrade: false,
+      rejectUnauthorized: false,
 
       autoConnect: true,
     }
