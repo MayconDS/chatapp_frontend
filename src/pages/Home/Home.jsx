@@ -41,21 +41,8 @@ function Home() {
   );
   const [showNewChat, setShowNewChat] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const socket = socketIOClient(
-    "https://chatappbackend-production-45fa.up.railway.app/",
-    {
-      auth: {
-        key: user._id,
-      },
-      reconnectionDelay: 1000,
-      reconnection: true,
-      reconnectionAttemps: 10,
-      agent: false,
-      upgrade: false,
-      rejectUnauthorized: false,
-
-      autoConnect: true,
-    }
+  const socket = socketIOClient.connect(
+    "https://chatappbackend-production-45fa.up.railway.app/"
   );
 
   const Resize = (e) => {
