@@ -50,7 +50,6 @@ function Home() {
       reconnectionDelay: 1000,
       reconnection: true,
       reconnectionAttemps: 10,
-
       agent: false,
       upgrade: false,
       rejectUnauthorized: false,
