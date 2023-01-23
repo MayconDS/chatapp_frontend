@@ -42,7 +42,7 @@ function Home() {
   const [showNewChat, setShowNewChat] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const socket = socketIOClient(
-    "https://chatappbackend-production-45fa.up.railway.app",
+    "https://chatappbackend-production-45fa.up.railway.app/",
     {
       auth: {
         key: user._id,
