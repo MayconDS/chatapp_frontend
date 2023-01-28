@@ -180,7 +180,7 @@ const FirebaseServices = {
     await setDoc(
       doc(db, 'users', userId),
       {
-        avatar: `http://localhost:4001/images/${picture.data.key}`,
+        avatar: `https://chatappbackend-production-3265.up.railway.app/images/${picture.data.key}`,
       },
       { merge: true },
     )
