@@ -21,7 +21,7 @@ import { getStorage } from 'firebase/storage'
 import axios from 'axios'
 
 const Api = axios.create({
-  baseURL: 'http://localhost:4001',
+  baseURL: 'https://chatappbackend-production-3265.up.railway.app',
 })
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
@@ -36,7 +36,8 @@ const FirebaseServices = {
       user: params.user,
       uid: params.uid,
       bio: 'Olá sou novo no chat',
-      avatar: 'http://localhost:4001/images/avatar.webp',
+      avatar:
+        'https://chatappbackend-production-3265.up.railway.app/images/avatar.webp',
     })
   },
   login: async (params) => {
