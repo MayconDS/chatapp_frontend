@@ -14,20 +14,18 @@ import ChatIntro from "../../components/chat/ChatIntro";
 import ChatWindow from "../../components/chat/ChatWindow";
 import NewChat from "../../components/chat/NewChat";
 
-import ChatServices from "../../services/chats/chat";
-
-import socketIOClient from "socket.io-client";
 import "./Home.css";
 import Profile from "../../components/Profile/Profile";
-import UserServices from "../../services/user/user";
 
 import { DarkModeSwitch } from "react-toggle-dark-mode";
+import FirebaseServices from "../../services/Api";
 
 function Home() {
   const [activeChatIcon, setActiveChatIcon] = useState(false);
   const [activeContactIcon, setActiveContactIcon] = useState(false);
   const [activeLogoutIcon, setActiveLogoutIcon] = useState(false);
   const [activeProfileIcon, setActiveProfileIcon] = useState(false);
+  const [clickOutChat, setClickOutChat] = useState(null);
 
   const [isDarkMode, setDarkMode] = React.useState(false);
 
@@ -41,9 +39,31 @@ function Home() {
   );
   const [showNewChat, setShowNewChat] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const socket = socketIOClient.connect(
-    "https://chatappbackend-production-45fa.up.railway.app/"
-  );
+
+  useEffect(() => {
+    const getUser = () => {
+      FirebaseServices.getUser(user.uid, setUser);
+    };
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    const monitoringUser = async () => {
+      let unsub = FirebaseServices.monitoringUser(user.uid, setUser);
+      return unsub;
+    };
+    monitoringUser();
+  }, []);
+
+  useEffect(() => {
+    const getChatList = () => {
+      if (user !== null) {
+        let unsub = FirebaseServices.onChatList(user.uid, setChatlist);
+        return unsub;
+      }
+    };
+    getChatList();
+  }, [user]);
 
   const Resize = (e) => {
     if (e.currentTarget.innerWidth > 600) {
@@ -52,45 +72,19 @@ function Home() {
     setWindowWidth(e.currentTarget.innerWidth);
   };
 
-  useEffect(() => {
-    const getList = async () => {
-      if (user !== null) {
-        let chats = await ChatServices.onChatList();
-        setChatlist(chats);
-      }
-    };
-
-    getList();
-    socket.on("new-lastmessage", (last) => {
-      if (last) {
-        console.log(last);
-        getList();
-      }
-    });
-
-    const reloadUser = async () => {
-      let newUser = await UserServices.get();
-
-      setUser(newUser);
-    };
-    socket.on("user_updated", async (condition) => {
-      if (condition.condition == "reload_user") {
-        getList();
-        await reloadUser();
-      }
-    });
-  }, [user]);
-
-  const logOut = async () => {
-    await UserServices.logout();
-  };
-
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);
     localStorage.setItem("dark_mode", checked);
   };
 
   window.addEventListener("resize", Resize);
+
+  useEffect(() => {
+    if (showNewChat == false && showProfile == false) {
+      setActiveChatIcon(true);
+      setActiveContactIcon(false);
+    }
+  }, [showNewChat, showProfile]);
 
   return (
     <div
@@ -106,7 +100,7 @@ function Home() {
               <div className="navbar--avatar">
                 <img
                   className={`header--avatar ${user.online && "online"}`}
-                  src={user.picture}
+                  src={user.avatar}
                   onClick={function () {
                     setShowProfile(true);
                     setShowNewChat(false);
@@ -119,7 +113,6 @@ function Home() {
                   setActiveChatIcon(true);
                   setShowNewChat(false);
                   setShowProfile(false);
-                  setActiveSettingIcon(false);
                 }}
                 className={`navbar--chats icons  ${activeChatIcon && "active"}`}
               >
@@ -192,7 +185,6 @@ function Home() {
           >
             <NewChat
               windowWidth={windowWidth}
-              socket={socket}
               user={user}
               chatlist={chatlist}
               setChatlist={setChatlist}
@@ -207,12 +199,6 @@ function Home() {
             />
             <header>
               <h1>Chats</h1>
-              <div className="header--buttons">
-                <div className="header--btn">
-                  <MdOutlineClear />
-                  <span>Clear chats</span>
-                </div>
-              </div>
             </header>
             <div className="search">
               <div className="search--input">
@@ -223,16 +209,20 @@ function Home() {
                 />
               </div>
             </div>
-            <div className="chatlist">
+            <div onClick={() => setClickOutChat(false)} className="chatlist">
               <h1>Todas as conversas</h1>
 
-              {chatlist.chats &&
-                chatlist.chats.map((chat, key) => (
+              {chatlist &&
+                chatlist.map((chat, key) => (
                   <ChatListItem
-                    onClick={() => setActiveChat(chatlist.chats[key])}
+                    setActiveChat={setActiveChat}
+                    setClickOutChat={setClickOutChat}
+                    clickOutChat={clickOutChat}
+                    user={user}
+                    onClick={() => setActiveChat(chatlist[key])}
                     data={chat}
                     key={key}
-                    active={activeChat.chatId === chatlist.chats[key].chatId}
+                    active={activeChat.chatId === chatlist[key].chatId}
                   />
                 ))}
             </div>
@@ -246,7 +236,6 @@ function Home() {
                   windowWidth={windowWidth}
                   data={activeChat}
                   user={user}
-                  socket={socket}
                 />
               </>
             )}

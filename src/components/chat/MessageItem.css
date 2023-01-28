@@ -1,9 +1,24 @@
+.modal {
+  position: absolute;
+
+  width: 100%;
+}
+.modal > button {
+  background-color: white;
+  border-radius: 8px;
+  padding: 5px;
+  border: none;
+  width: 130px;
+  height: 30px;
+}
+
 .messageLine {
   margin-bottom: 10px;
   display: flex;
 }
 
 .messageLine > .messageSide {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 4px;

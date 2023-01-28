@@ -7,8 +7,7 @@ import { BsChatDots } from "react-icons/bs";
 import { MdClear } from "react-icons/md";
 
 import "./NewChat.css";
-import ChatServices from "../../services/chats/chat";
-import UserServices from "../../services/user/user";
+import FirebaseServices from "../../services/Api";
 const NewChat = ({
   show,
   windowWidth,
@@ -16,31 +15,19 @@ const NewChat = ({
   user,
   chatlist,
   setChatlist,
-  socket,
 }) => {
   const [list, setList] = useState([]);
   const [search, setSearch] = useState("");
 
-  const getList = async () => {
-    if (user !== null) {
-      let results = await ChatServices.getContactList();
-      setList(results);
-    }
-  };
-
   useEffect(() => {
+    const getList = async () => {
+      if (user !== null) {
+        let results = await FirebaseServices.getContactList(user.uid);
+        setList(results);
+      }
+    };
     getList();
   }, [user]);
-
-  const addNewChat = async (targetUser) => {
-    await ChatServices.addNewChat(user.user, targetUser.user);
-    socket.on("new-chat", (chats) => {
-      let oldChats = chatlist;
-      oldChats.chats.push(chats[0]);
-      setChatlist(oldChats);
-    });
-    handleClose();
-  };
 
   const handleClose = () => {
     setShow(false);
@@ -51,8 +38,13 @@ const NewChat = ({
     if (search == "") {
       alert("Invalid search");
     }
-    let contacts = await UserServices.searchContact(search);
-    setList(contacts);
+    // let contacts = await UserServices.searchContact(search);
+    // setList(contacts);
+  };
+
+  const addNewChat = async (user2) => {
+    await FirebaseServices.addNewChat(user, user2);
+    handleClose(true);
   };
 
   return (
@@ -85,7 +77,6 @@ const NewChat = ({
             <MdClear
               onClick={function () {
                 setSearch("");
-                getList();
               }}
             />
           </div>
@@ -99,7 +90,7 @@ const NewChat = ({
             className="newChat--item"
           >
             <div className="newChat--contact">
-              <img className="newChat--itemavatar" src={item.picture} alt="" />
+              <img className="newChat--itemavatar" src={item.avatar} alt="" />
               <div className="newChat--iteminfo">
                 <div className="newChat--itemname">{item.name}</div>
                 <div className="newChat--itemstatus">

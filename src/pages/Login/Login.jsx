@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./Login.css";
 import { Link, Navigate } from "react-router-dom";
-import UserServices from "../../services/user/user";
+import FirebaseServices, { Auth } from "../../services/Api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +14,7 @@ const Login = () => {
     evt.preventDefault();
 
     try {
-      let user = await UserServices.login({
+      await FirebaseServices.login({
         email,
         password,
       });

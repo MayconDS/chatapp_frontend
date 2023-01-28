@@ -71,7 +71,7 @@
   flex: 1;
   overflow-y: auto;
   background-color: #f0f4fa;
-
+  z-index: -1;
   padding: 20px 60px;
 }
 .chatWindow--body::-webkit-scrollbar {

@@ -14,7 +14,6 @@ const Routering = () => {
           path="/"
           element={
             <PrivateRouter>
-              {" "}
               <Home />
             </PrivateRouter>
           }

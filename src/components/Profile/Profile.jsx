@@ -7,9 +7,10 @@ import ClearIcon from "@mui/icons-material/Clear";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 import "./Profile.css";
-import UserServices from "../../services/user/user";
+import FirebaseServices from "../../services/Api";
 const Profile = ({ show, setShow, windowWidth, user }) => {
   const [name, setName] = useState(user.name);
+
   const [bio, setBio] = useState(user.bio);
 
   const [activeEditName, setActiveEditName] = useState(false);
@@ -19,30 +20,36 @@ const Profile = ({ show, setShow, windowWidth, user }) => {
   const handleUpload = () => {
     let file = document.getElementById("file");
     if (file.files[0]) {
-      let preview = URL.createObjectURL(file.files[0]);
-      setImage(preview);
+      const reader = new FileReader();
+      reader.readAsDataURL(file.files[0]);
+
+      reader.onload = (e) => {
+        setImage(e.target.result);
+      };
     }
   };
 
   const handleUpdateName = async () => {
-    await UserServices.updateName({
-      name: name,
-    });
+    if (name == "") {
+      return alert("Insira algo");
+    }
+    await FirebaseServices.updateName(user.uid, name);
   };
   const handleUpdateBio = async () => {
-    await UserServices.updateBio({
-      bio: bio,
-    });
+    if (bio == "") {
+      return alert("Insira algo");
+    }
+    await FirebaseServices.updateBio(user.uid, bio);
   };
-  const handleDeleteAccount = async () => {
-    await UserServices.deleteAccount();
-    await UserServices.logout();
-  };
+  // const handleDeleteAccount = async () => {
+  //   await UserServices.deleteAccount();
+  //   await UserServices.logout();
+  // };
 
   const uploadPicture = async () => {
     let file = document.getElementById("file");
 
-    await UserServices.choosePicture(file.files[0]);
+    await FirebaseServices.addAvatar(user.uid, file.files[0]);
     setImage("");
   };
 
@@ -69,7 +76,7 @@ const Profile = ({ show, setShow, windowWidth, user }) => {
             <CameraAltIcon />
             <span>Troque sua foto</span>
           </div>
-          <img src={image != "" ? image : user.picture} alt="" />
+          <img src={image != "" ? image : user.avatar} alt="" />
         </label>
         <input
           onChange={handleUpload}
@@ -183,7 +190,7 @@ const Profile = ({ show, setShow, windowWidth, user }) => {
             ira conseguir reativar esta conta
           </p>
         </div>
-        <button onClick={handleDeleteAccount}>DELETAR CONTA</button>
+        <button>DELETAR CONTA</button>
       </div>
     </div>
   );

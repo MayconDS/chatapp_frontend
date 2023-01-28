@@ -29,7 +29,7 @@ const Contact = ({
       </div>
       <div className="contact--container">
         <div className="contact--info">
-          <img src={data.picture} alt="" />
+          <img src={data.avatar} alt="" />
           <div className="contact--details">
             <div className="contact--name">{data.name}</div>
             <div className="contact--user">{data.user}</div>

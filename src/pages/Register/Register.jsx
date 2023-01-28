@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import "./Register.css";
 import { Link, Navigate } from "react-router-dom";
-import UserServices from "../../services/user/user";
+import FirebaseServices, { Auth } from "../../services/Api";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -20,12 +22,18 @@ const Register = () => {
     }
 
     try {
-      const User = await UserServices.register({
-        user: user,
-        name: name,
-        email: email,
-        password: password,
-      });
+      await createUserWithEmailAndPassword(Auth, email, password)
+        .then(async (response) => {
+          await FirebaseServices.addUser({
+            uid: response.user.uid,
+            name: name,
+            email: email,
+            user: user,
+          });
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
 
       setRedirectToLogin(true);
     } catch (error) {
