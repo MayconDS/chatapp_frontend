@@ -22,10 +22,13 @@ const ChatWindow = ({
   windowWidth,
   setCloseChat,
   setActiveChat,
+  activeProfileIcon,
+  activeContactIcon,
 }) => {
   const body = useRef();
 
   const [activeContactInfo, setActiveContactInfo] = useState(false);
+  const [zIndex, setZindex] = useState(false);
 
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [text, setText] = useState("");
@@ -49,6 +52,14 @@ const ChatWindow = ({
       }
     });
   }, [data]);
+
+  useEffect(() => {
+    if (activeProfileIcon == false && activeContactIcon == false) {
+      setZindex(false);
+    } else {
+      setZindex(true);
+    }
+  });
 
   const handleMicClick = () => {
     if (recognition !== null) {
@@ -170,7 +181,13 @@ const ChatWindow = ({
                 </div>
               </div>
             </div>
-            <div ref={body} className="chatWindow--body">
+            <div
+              style={{
+                zIndex: windowWidth <= 950 ? (zIndex == true ? -1 : 0) : 0,
+              }}
+              ref={body}
+              className="chatWindow--body"
+            >
               {list.map((item, key) => (
                 <MessageItem key={key} user={user} data={item} />
               ))}

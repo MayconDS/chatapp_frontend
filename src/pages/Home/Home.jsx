@@ -231,6 +231,8 @@ function Home() {
             {activeChat.chatId !== undefined && (
               <>
                 <ChatWindow
+                  activeContactIcon={activeContactIcon}
+                  activeProfileIcon={activeProfileIcon}
                   setActiveChat={setActiveChat}
                   setCloseChat={setCloseChat}
                   windowWidth={windowWidth}
