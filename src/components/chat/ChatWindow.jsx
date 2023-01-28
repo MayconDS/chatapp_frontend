@@ -59,7 +59,7 @@ const ChatWindow = ({
     } else {
       setZindex(true);
     }
-  });
+  }, [activeContactIcon, activeProfileIcon]);
 
   const handleMicClick = () => {
     if (recognition !== null) {
