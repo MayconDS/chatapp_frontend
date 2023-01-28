@@ -22,11 +22,6 @@ const MessageItem = ({ data, user }) => {
     }
   }, [data]);
 
-  const clickMessage = (e) => {
-    if (e.button == 2) {
-    }
-  };
-
   const deleteMessage = async () => {
     await FirebaseServices.deleteMessage(data);
   };
@@ -43,7 +38,6 @@ const MessageItem = ({ data, user }) => {
         <div
           onMouseEnter={() => setMsgHover(true)}
           onMouseLeave={() => setMsgHover(false)}
-          onMouseDown={(e) => clickMessage(e)}
           style={{
             flexDirection: user.uid === data.author.uid ? `row-reverse` : `row`,
           }}
@@ -105,7 +99,7 @@ const MessageItem = ({ data, user }) => {
               }}
               className="messageDate"
             >
-              {time}{" "}
+              {time}
               {msgHover ? (
                 openModal == true ? (
                   <KeyboardArrowUpIcon
