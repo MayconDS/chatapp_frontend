@@ -252,16 +252,16 @@ const FirebaseServices = {
     deleteUser(user)
       .then(async () => {
         await deleteDoc(doc(db, 'users', userId))
-        FirebaseServices.deleteAllChats(userId)
-        // localStorage.removeItem('chatapp_user')
-        // localStorage.removeItem('chatapp_token')
-        // window.location.reload()
+        FirebaseServices.deleteAllChatsInUsers(userId)
+        localStorage.removeItem('chatapp_user')
+        localStorage.removeItem('chatapp_token')
+        window.location.reload()
       })
       .catch((error) => {
         console.log(error)
       })
   },
-  deleteAllChats: async (userId) => {
+  deleteAllChatsInUsers: async (userId) => {
     let chatsId = []
     const chats = await getDocs(collection(db, 'chats')).then((doc) => {
       doc.forEach((doc2) => {
