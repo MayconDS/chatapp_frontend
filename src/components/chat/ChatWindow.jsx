@@ -127,10 +127,12 @@ const ChatWindow = ({
 
   const clearMessages = async () => {
     await FirebaseServices.clearMessages(data);
+    setModal(false);
   };
   const deleteChat = async () => {
     await FirebaseServices.deleteChat(data);
     setActiveChat({});
+    setModal(false);
   };
 
   console.log(activeContactIcon);
