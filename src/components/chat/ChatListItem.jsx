@@ -78,7 +78,6 @@ const ChatListItem = ({
               <div className="chatListItem--name">{contact.name}</div>
               <div className="chatListItem--box">
                 <div className="chatListItem--date">{time}</div>
-                <div className="chatListItem--status">{"ONLINE"}</div>
               </div>
             </div>
             <div className="chatListItem--line">

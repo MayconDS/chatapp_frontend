@@ -6,19 +6,21 @@ import "./ChatIntro.css";
 
 const ChatIntro = () => {
   return (
-    <div className="chatIntro">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174879.png" alt="" />
-      <h1>Mantenha seu celular conectado</h1>
+    <div
+      className={`chatIntro ${
+        localStorage.getItem("dark_mode") == "true" ? "dark" : ""
+      }`}
+    >
+      <img
+        src="https://8826380.fs1.hubspotusercontent-na1.net/hubfs/8826380/HiveWatch_September2022/Images/services-3.png"
+        alt=""
+      />
+      <h1>Bate-Papo em tempo real</h1>
       <h2>
-        Envie e receba mensagens sem preicsar manter seu celular conteado à
-        internet.
+        Envie e receba mensagens sem precisar adicionar alguem,
         <br />
-        Use o WhatsApp em até quatro aparelhos contectados e um celular ao mesmo
-        tempo.
+        Use o ChatApp em seu celular e computador
       </h2>
-      <span>
-        <LockIcon /> Protegido com criptografia de ponta a ponta
-      </span>
     </div>
   );
 };

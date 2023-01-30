@@ -1,5 +1,5 @@
 import { getApp, getApps, initializeApp } from 'firebase/app'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { deleteUser, getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import firebaseConfig from './firebaseConfig'
 
 import {
@@ -27,6 +27,8 @@ const Api = axios.create({
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
 
 const db = getFirestore(app)
+
+export const Auth = getAuth(app)
 
 const FirebaseServices = {
   addUser: async (params) => {
@@ -245,12 +247,58 @@ const FirebaseServices = {
       })
     })
   },
+  deleteAccount: async (userId) => {
+    const user = Auth.currentUser
+    deleteUser(user)
+      .then(async () => {
+        await deleteDoc(doc(db, 'users', userId))
+        FirebaseServices.deleteAllChats(userId)
+        // localStorage.removeItem('chatapp_user')
+        // localStorage.removeItem('chatapp_token')
+        // window.location.reload()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },
+  deleteAllChats: async (userId) => {
+    let chatsId = []
+    const chats = await getDocs(collection(db, 'chats')).then((doc) => {
+      doc.forEach((doc2) => {
+        let data = doc2.data()
+        data.users.forEach((user) => {
+          if (user.uid == userId) {
+            chatsId.push(data.chatId)
+          }
+        })
+      })
+    })
+    chatsId.forEach(async (chat) => {
+      await getDoc(doc(db, 'chats', chat)).then((doc1) => {
+        let data = doc1.data()
+        let chats = data.users.forEach(async (user) => {
+          if (user.uid !== userId) {
+            let chats = []
+            await getDoc(doc(db, 'users', user.uid)).then((doc2) => {
+              let newData = doc2.data()
+              chats = newData.chats.filter((chatId) => chatId.chatId !== chat)
+            })
+            console.log('chatssssss', chats)
+            await updateDoc(doc(db, 'users', user.uid), {
+              chats: chats,
+            })
+          }
+        })
+      })
+      await deleteDoc(doc(db, 'chats', chat))
+    })
+  },
 }
-
 const updateInfoInChats = async (userId) => {
   let newUser = await getDoc(doc(db, 'users', userId))
   await getDocs(collection(db, 'chats')).then((chat) => {
     chat.forEach(async (item) => {
+      let messages = []
       let users = []
       let data = item.data()
       if (data.users.length > 0) {
@@ -261,13 +309,20 @@ const updateInfoInChats = async (userId) => {
           users.push(user)
         })
       }
+      if (data.messages.length > 0) {
+        data.messages.forEach((message) => {
+          if (message.author.uid == userId) {
+            message.author = newUser.data()
+          }
+          messages.push(message)
+        })
+      }
 
       await updateDoc(doc(db, 'chats', data.chatId), {
         users: users,
+        messages: messages,
       })
     })
   })
 }
-
 export default FirebaseServices
-export const Auth = getAuth(app)

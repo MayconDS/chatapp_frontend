@@ -41,10 +41,9 @@ const Profile = ({ show, setShow, windowWidth, user }) => {
     }
     await FirebaseServices.updateBio(user.uid, bio);
   };
-  // const handleDeleteAccount = async () => {
-  //   await UserServices.deleteAccount();
-  //   await UserServices.logout();
-  // };
+  const handleDeleteAccount = async () => {
+    await FirebaseServices.deleteAccount(user.uid);
+  };
 
   const uploadPicture = async () => {
     let file = document.getElementById("file");
@@ -190,7 +189,7 @@ const Profile = ({ show, setShow, windowWidth, user }) => {
             ira conseguir reativar esta conta
           </p>
         </div>
-        <button>DELETAR CONTA</button>
+        <button onClick={() => handleDeleteAccount()}>DELETAR CONTA</button>
       </div>
     </div>
   );

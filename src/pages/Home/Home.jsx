@@ -86,6 +86,12 @@ function Home() {
     }
   }, [showNewChat, showProfile]);
 
+  const logOut = () => {
+    localStorage.removeItem("chatapp_user");
+    localStorage.removeItem("chatapp_token");
+    window.location.reload();
+  };
+
   return (
     <div
       onResize={(e) => Resize(e)}

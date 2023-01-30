@@ -6,7 +6,7 @@
 
   align-items: center;
   height: 100%;
-  border-bottom: 6px solid #4adf83;
+  border-bottom: 6px solid #5b96f7;
 }
 
 .chatIntro > img {
@@ -29,17 +29,31 @@
   text-align: center;
 }
 
-.chatIntro > span {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+/* DARK */
 
-  font-size: 14px;
-  color: #8696a0;
-  position: absolute;
-  bottom: 40px;
+.chatIntro.dark {
+  background-color: #26292d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+  height: 100%;
+  border-bottom: 6px solid #5b96f7;
 }
-.chatIntro > span > svg {
-  font-size: 11px;
-  margin-top: 3px;
+
+.chatIntro.dark > h1 {
+  font-size: 32px;
+  color: #fbfbfb;
+  font-weight: normal;
+  margin-top: 30px;
+}
+
+.chatIntro.dark > h2 {
+  font-size: 14px;
+  color: #bdbdbd;
+  font-weight: normal;
+  margin-top: 20px;
+  line-height: 20px;
+  text-align: center;
 }

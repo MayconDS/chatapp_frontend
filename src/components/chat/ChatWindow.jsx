@@ -26,6 +26,7 @@ const ChatWindow = ({
   activeContactIcon,
 }) => {
   const body = useRef();
+  const [modal, setModal] = useState(false);
 
   const [activeContactInfo, setActiveContactInfo] = useState(false);
   const [zIndex, setZindex] = useState(false);
@@ -124,6 +125,14 @@ const ChatWindow = ({
     monitoringMessages();
   }, [data.chatId]);
 
+  const clearMessages = async () => {
+    await FirebaseServices.clearMessages(data);
+  };
+  const deleteChat = async () => {
+    await FirebaseServices.deleteChat(data);
+    setActiveChat({});
+  };
+
   return (
     <div className="body">
       {contact && (
@@ -148,7 +157,7 @@ const ChatWindow = ({
                     cursor: "pointer",
                     marginLeft: "10px",
                     marginRight: "10px",
-                    display: windowWidth <= 600 ? "flex" : "none",
+                    display: windowWidth <= 650 ? "flex" : "none",
                     alignItems: "center",
                     backgroundColor: "transparent",
                     border: "none",
@@ -171,13 +180,16 @@ const ChatWindow = ({
               </div>
               <div className="chatWindow--headerbuttons">
                 <div className="chatWindow--btn">
-                  <SearchIcon />
-                </div>
-                <div className="chatWindow--btn">
-                  <AttachFileIcon />
-                </div>
-                <div className="chatWindow--btn">
-                  <MoreVertIcon />
+                  <div
+                    style={{ display: modal == true ? "flex" : "none" }}
+                    className="modal--chatWindow"
+                  >
+                    <button onClick={() => deleteChat()}>Deletar chat</button>
+                    <button onClick={() => clearMessages()}>
+                      Limpar conversas
+                    </button>
+                  </div>
+                  <MoreVertIcon onClick={() => setModal(true)} />
                 </div>
               </div>
             </div>
@@ -185,6 +197,7 @@ const ChatWindow = ({
               style={{
                 zIndex: windowWidth <= 950 ? (zIndex == true ? -1 : 0) : 0,
               }}
+              onClick={() => setModal(false)}
               ref={body}
               className="chatWindow--body"
             >
