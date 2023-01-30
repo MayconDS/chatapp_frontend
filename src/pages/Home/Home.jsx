@@ -238,7 +238,7 @@ function Home() {
               <>
                 <ChatWindow
                   activeContactIcon={showProfile}
-                  activeProfileIcon={activeProfileIcon}
+                  activeProfileIcon={showNewChat}
                   setActiveChat={setActiveChat}
                   setCloseChat={setCloseChat}
                   windowWidth={windowWidth}

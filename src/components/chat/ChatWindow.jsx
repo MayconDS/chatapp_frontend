@@ -55,10 +55,10 @@ const ChatWindow = ({
   }, [data]);
 
   useEffect(() => {
-    if (activeProfileIcon == false && activeContactIcon == false) {
-      setZindex(false);
-    } else {
+    if (activeProfileIcon == true || activeContactIcon == true) {
       setZindex(true);
+    } else {
+      setZindex(false);
     }
   }, [activeContactIcon, activeProfileIcon]);
 
@@ -132,6 +132,8 @@ const ChatWindow = ({
     await FirebaseServices.deleteChat(data);
     setActiveChat({});
   };
+
+  console.log(activeContactIcon);
 
   return (
     <div className="body">
