@@ -18,14 +18,14 @@ const NewChat = ({
 }) => {
   const [list, setList] = useState([]);
   const [search, setSearch] = useState("");
+  const getList = async () => {
+    if (user !== null) {
+      let results = await FirebaseServices.getContactList(user.uid);
+      setList(results);
+    }
+  };
 
   useEffect(() => {
-    const getList = async () => {
-      if (user !== null) {
-        let results = await FirebaseServices.getContactList(user.uid);
-        setList(results);
-      }
-    };
     getList();
   }, [user]);
 
@@ -38,8 +38,8 @@ const NewChat = ({
     if (search == "") {
       alert("Invalid search");
     }
-    // let contacts = await UserServices.searchContact(search);
-    // setList(contacts);
+    let contacts = await FirebaseServices.searchContact(search, user.uid);
+    setList(contacts);
   };
 
   const addNewChat = async (user2) => {
@@ -77,6 +77,7 @@ const NewChat = ({
             <MdClear
               onClick={function () {
                 setSearch("");
+                getList();
               }}
             />
           </div>

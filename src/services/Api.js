@@ -15,6 +15,7 @@ import {
   onSnapshot,
   deleteDoc,
   query,
+  where,
 } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 
@@ -66,7 +67,7 @@ const FirebaseServices = {
     const results = await getDocs(collection(db, 'users'))
     results.forEach((doc) => {
       let data = doc.data()
-      if (doc.id !== userId) {
+      if (data.uid !== userId) {
         list.push({
           uid: doc.id,
           name: data.name,
@@ -125,7 +126,7 @@ const FirebaseServices = {
       console.log(error.message)
     }
   },
-  onChatList: async (userId, setChatlist) => {
+  onChatList: async (userId, setChatlist, setChatlistBackup) => {
     return onSnapshot(collection(db, 'chats'), (doc) => {
       let chats = []
       doc.forEach((chat) => {
@@ -139,6 +140,7 @@ const FirebaseServices = {
         }
       })
       setChatlist(chats)
+      setChatlistBackup(chats)
     })
   },
   onChatContent: (chatId, setList, setUsers) => {
@@ -292,6 +294,25 @@ const FirebaseServices = {
       })
       await deleteDoc(doc(db, 'chats', chat))
     })
+  },
+  searchContact: async (params, userId) => {
+    let list = []
+    const userRef = collection(db, 'users')
+    const q = query(userRef, where('name', '>=', params))
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) => {
+      let data = doc.data()
+      if (data.uid !== userId) {
+        list.push({
+          uid: data.uid,
+          name: data.name,
+          user: data.user,
+          avatar: data.avatar,
+          bio: data.bio,
+        })
+      }
+    })
+    return list
   },
 }
 const updateInfoInChats = async (userId) => {

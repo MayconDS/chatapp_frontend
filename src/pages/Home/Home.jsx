@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 import ChatIcon from "@mui/icons-material/Chat";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -28,8 +28,10 @@ function Home() {
   const [clickOutChat, setClickOutChat] = useState(null);
 
   const [isDarkMode, setDarkMode] = React.useState(false);
-
+  const [namesAndUsersOfChats, setNamesAndUsersOfChats] = useState();
+  const [search, setSearch] = useState("");
   const [chatlist, setChatlist] = useState([]);
+  const [chatlistBackup, setChatlistBackup] = useState([]);
   const [activeChat, setActiveChat] = useState({});
   const [userOnline, setUserOnline] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -39,6 +41,29 @@ function Home() {
   );
   const [showNewChat, setShowNewChat] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+
+  const getChatList = () => {
+    if (user !== null) {
+      let unsub = FirebaseServices.onChatList(
+        user.uid,
+        setChatlist,
+        setChatlistBackup
+      );
+      return unsub;
+    }
+  };
+
+  const Resize = (e) => {
+    if (e.currentTarget.innerWidth > 600) {
+      setCloseChat(false);
+    }
+    setWindowWidth(e.currentTarget.innerWidth);
+  };
+
+  const toggleDarkMode = (checked) => {
+    setDarkMode(checked);
+    localStorage.setItem("dark_mode", checked);
+  };
 
   useEffect(() => {
     const getUser = () => {
@@ -56,35 +81,53 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    const getChatList = () => {
-      if (user !== null) {
-        let unsub = FirebaseServices.onChatList(user.uid, setChatlist);
-        return unsub;
-      }
-    };
     getChatList();
   }, [user]);
+  useEffect(() => {
+    const filterChat = () => {
+      if (chatlistBackup) {
+        let list = [];
+        let namesAndUsers = [];
+        chatlistBackup.map((item) => {
+          item.users.map((item2) => {
+            if (item2.user !== user.user) {
+              namesAndUsers.push(item2.name, item2.user);
+            }
+          });
+        });
+        const lowerSearch = search.toLowerCase();
 
-  const Resize = (e) => {
-    if (e.currentTarget.innerWidth > 600) {
-      setCloseChat(false);
-    }
-    setWindowWidth(e.currentTarget.innerWidth);
-  };
-
-  const toggleDarkMode = (checked) => {
-    setDarkMode(checked);
-    localStorage.setItem("dark_mode", checked);
-  };
-
-  window.addEventListener("resize", Resize);
-
+        let chatsFilter = namesAndUsers.filter((text) => {
+          return text.toLowerCase().includes(lowerSearch);
+        });
+        chatsFilter.forEach((chat) => {
+          chatlistBackup.map((item) => {
+            item.users.map((item2) => {
+              if (
+                item2.user.toLowerCase() == chat.toLowerCase() ||
+                item2.name.toLowerCase() == chat.toLowerCase()
+              ) {
+                list.push(item);
+              } else {
+                list = [];
+              }
+            });
+          });
+        });
+        console.log(list);
+        setChatlist(list);
+      }
+    };
+    filterChat();
+  }, [search]);
   useEffect(() => {
     if (showNewChat == false && showProfile == false) {
       setActiveChatIcon(true);
       setActiveContactIcon(false);
     }
   }, [showNewChat, showProfile]);
+
+  window.addEventListener("resize", Resize);
 
   const logOut = () => {
     localStorage.removeItem("chatapp_user");
@@ -211,6 +254,7 @@ function Home() {
                 <SearchIcon />{" "}
                 <input
                   type="search"
+                  onChange={(e) => setSearch(e.target.value)}
                   placeholder="Procurar ou começar uma nova conversa"
                 />
               </div>

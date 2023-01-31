@@ -135,8 +135,6 @@ const ChatWindow = ({
     setModal(false);
   };
 
-  console.log(activeContactIcon);
-
   return (
     <div className="body">
       {contact && (
