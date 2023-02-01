@@ -45,14 +45,23 @@
   text-align: center;
   gap: 5px;
 }
-.register > form > .register-form > input {
+.register > form > .register-form > #field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  border: 1px solid rgb(220, 220, 220);
+  outline: 0;
+  padding: 0 8px;
+  border-radius: 30px;
+}
+.register > form > .register-form > #field > input {
   outline: 0;
   height: 38px;
+  border: none;
   color: rgb(59, 59, 59);
-  padding: 0 8px;
-  background-color: #fafafa;
-  border: 1px solid rgb(228, 228, 228);
-  border-radius: 3px;
+  border-radius: 30px;
+  width: 100%;
 }
 .register > form > .register-form > input::placeholder {
   color: rgb(175, 175, 175);
@@ -68,7 +77,7 @@
   background-color: #2196f3;
   border: none;
   height: 38px;
-  border-radius: 16px;
+  border-radius: 30px;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -85,7 +94,7 @@
 
 /* footer */
 .register > form > footer {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 .register > form > footer > span {
   color: rgb(160, 160, 160);

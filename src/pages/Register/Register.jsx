@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 import "./Register.css";
 import { Link, Navigate } from "react-router-dom";
@@ -11,6 +13,8 @@ const Register = () => {
   const [name, setName] = useState("");
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [redirectToLogin, setRedirectToLogin] = useState(false);
 
@@ -55,26 +59,42 @@ const Register = () => {
           </p>
         </header>
         <div className="register-form">
-          <input
-            type="text"
-            placeholder="E-mail"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Nome completo"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Nome de usuário"
-            onChange={(e) => setUser(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Senha"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div id="field" className="email">
+            <input
+              type="email"
+              placeholder="E-mail"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div id="field" className="name">
+            <input
+              type="text"
+              placeholder="Nome completo"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div id="field" className="user">
+            <input
+              type="text"
+              placeholder="Nome de usuário"
+              onChange={(e) => setUser(e.target.value)}
+            />
+          </div>
+          <div id="field" className="password">
+            <input
+              type={showPassword == true ? "text" : "password"}
+              placeholder="Senha"
+              value={password}
+              onChange={function (e) {
+                setPassword(e.target.value);
+              }}
+            />
+            {showPassword == true ? (
+              <AiOutlineEye onClick={() => setShowPassword(false)} />
+            ) : (
+              <AiOutlineEyeInvisible onClick={() => setShowPassword(true)} />
+            )}
+          </div>
           <p>Seus dados estão seguros.</p>
           <button>Cadastre-se</button>
         </div>
