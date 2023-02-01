@@ -23,7 +23,7 @@ https://chatlive.vercel.app/
 ## Funcionalidades
 ```
   * Começar um novo chat
-  * Enviar/Receber mensagems
+  * Enviar/Receber mensagems (com emojis)
   * Transcrever mensagems apartir de audio via microfone
   * Pesquisar por usuário para começar um novo chat na aba contatos
   * Pesquisar por chats na home
