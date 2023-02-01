@@ -1,7 +1,7 @@
 <img src="https://user-images.githubusercontent.com/86381282/216072251-a259eea4-eca2-4ac3-946e-bc1dba30fe09.jpg" />
 <div display="flex" flex-direction="row"> 
-<img  width="500" src="https://user-images.githubusercontent.com/86381282/216072899-c7caf6d7-9726-48d6-ba1f-26e01c5ebfab.jpg" />
-<img width="500"  src="https://user-images.githubusercontent.com/86381282/216073462-66e99b4a-9fe8-4cbc-94d6-6f6dd21b69a8.jpg" />
+<img  width="480" src="https://user-images.githubusercontent.com/86381282/216072899-c7caf6d7-9726-48d6-ba1f-26e01c5ebfab.jpg" />
+<img width="480"  src="https://user-images.githubusercontent.com/86381282/216073462-66e99b4a-9fe8-4cbc-94d6-6f6dd21b69a8.jpg" />
 </div>
 
 ## 💻 Tecnologias utilizadas
