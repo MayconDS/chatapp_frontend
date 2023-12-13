@@ -22,7 +22,7 @@ import { getStorage } from 'firebase/storage'
 import axios from 'axios'
 
 const Api = axios.create({
-  baseURL: 'https://chatappbackend-production-3265.up.railway.app',
+  baseURL: 'https://chatlive-backend.onrender.com',
 })
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
