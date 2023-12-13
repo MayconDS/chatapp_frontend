@@ -1,7 +1,5 @@
 import React from "react";
 
-import LockIcon from "@mui/icons-material/Lock";
-
 import "./ChatIntro.css";
 
 const ChatIntro = () => {

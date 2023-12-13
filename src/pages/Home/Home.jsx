@@ -1,3 +1,4 @@
+import "./Home.css";
 import React, { useState, useEffect, useMemo } from "react";
 
 import ChatIcon from "@mui/icons-material/Chat";
@@ -14,7 +15,6 @@ import ChatIntro from "../../components/chat/ChatIntro";
 import ChatWindow from "../../components/chat/ChatWindow";
 import NewChat from "../../components/chat/NewChat";
 
-import "./Home.css";
 import Profile from "../../components/Profile/Profile";
 
 import { DarkModeSwitch } from "react-toggle-dark-mode";

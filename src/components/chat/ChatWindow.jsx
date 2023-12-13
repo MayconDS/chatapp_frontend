@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import EmojiPicker from "emoji-picker-react";
 
-import SearchIcon from "@mui/icons-material/Search";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
