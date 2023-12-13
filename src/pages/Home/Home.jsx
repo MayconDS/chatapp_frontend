@@ -114,7 +114,7 @@ function Home() {
             });
           });
         });
-        console.log(list);
+
         setChatlist(list);
       }
     };

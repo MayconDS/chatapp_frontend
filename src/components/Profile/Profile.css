@@ -5,6 +5,8 @@
   padding: 60px 30px;
   left: 0;
   top: 0;
+  height: 100%;
+  overflow: auto;
   bottom: 0;
   background-color: #f8faff;
   display: flex;
@@ -13,7 +15,6 @@
 
 .profile > .profile--head {
   display: flex;
-
   align-items: center;
 }
 .profile > .profile--head > .profile--backbutton {
@@ -181,8 +182,7 @@
 }
 
 .profile > .profile--delete {
-  position: absolute;
-  bottom: 40px;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 10px;

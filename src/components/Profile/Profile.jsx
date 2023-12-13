@@ -47,7 +47,6 @@ const Profile = ({ show, setShow, windowWidth, user }) => {
 
   const uploadPicture = async () => {
     let file = document.getElementById("file");
-
     await FirebaseServices.addAvatar(user.uid, file.files[0]);
     setImage("");
   };

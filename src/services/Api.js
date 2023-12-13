@@ -17,20 +17,51 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
-
-import axios from "axios";
-// http://localhost:4001/
-// https://chatlive-backend.onrender.com
-const Api = axios.create({
-  baseURL: "https://chatlive-backend.onrender.com",
-});
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 export const Auth = getAuth(app);
+
+const updateInfoInChats = async (userId) => {
+  let newUser = await getDoc(doc(db, "users", userId));
+  await getDocs(collection(db, "chats")).then((chat) => {
+    chat.forEach(async (item) => {
+      let messages = [];
+      let users = [];
+      let data = item.data();
+      if (data.users.length > 0) {
+        data.users.forEach(async (user) => {
+          if (user.uid == userId) {
+            user = newUser.data();
+          }
+          users.push(user);
+        });
+      }
+      if (data.messages.length > 0) {
+        data.messages.forEach((message) => {
+          if (message.author.uid == userId) {
+            message.author = newUser.data();
+          }
+          messages.push(message);
+        });
+      }
+
+      await updateDoc(doc(db, "chats", data.chatId), {
+        users: users,
+        messages: messages,
+      });
+    });
+  });
+};
 
 const FirebaseServices = {
   addUser: async (params) => {
@@ -173,19 +204,14 @@ const FirebaseServices = {
     });
   },
   addAvatar: async (userId, file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    let picture = await Api.post("/images/upload_pic", formData, {
-      headers: {
-        "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
-      },
-    });
+    const storageRef = ref(storage, "images/" + file.name);
+    const uploadTask = await uploadBytesResumable(storageRef, file);
+    const downloadURL = await getDownloadURL(storageRef);
 
     await setDoc(
       doc(db, "users", userId),
       {
-        avatar: `https://chatlive-backend.onrender.com/images/${picture.data.key}`,
+        avatar: downloadURL,
       },
       { merge: true }
     );
@@ -315,35 +341,5 @@ const FirebaseServices = {
     return list;
   },
 };
-const updateInfoInChats = async (userId) => {
-  let newUser = await getDoc(doc(db, "users", userId));
-  await getDocs(collection(db, "chats")).then((chat) => {
-    chat.forEach(async (item) => {
-      let messages = [];
-      let users = [];
-      let data = item.data();
-      if (data.users.length > 0) {
-        data.users.forEach(async (user) => {
-          if (user.uid == userId) {
-            user = newUser.data();
-          }
-          users.push(user);
-        });
-      }
-      if (data.messages.length > 0) {
-        data.messages.forEach((message) => {
-          if (message.author.uid == userId) {
-            message.author = newUser.data();
-          }
-          messages.push(message);
-        });
-      }
 
-      await updateDoc(doc(db, "chats", data.chatId), {
-        users: users,
-        messages: messages,
-      });
-    });
-  });
-};
 export default FirebaseServices;
