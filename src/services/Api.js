@@ -40,7 +40,7 @@ const FirebaseServices = {
       uid: params.uid,
       bio: 'Olá sou novo no chat',
       avatar:
-        'https://chatappbackend-production-3265.up.railway.app/images/avatar.webp',
+        'https://chatlive-backend.onrender.com/images/avatar.webp',
     })
   },
   login: async (params) => {
@@ -185,7 +185,7 @@ const FirebaseServices = {
     await setDoc(
       doc(db, 'users', userId),
       {
-        avatar: `https://chatappbackend-production-3265.up.railway.app/images/${picture.data.key}`,
+        avatar: `https://chatlive-backend.onrender.com/images/${picture.data.key}`,
       },
       { merge: true },
     )
